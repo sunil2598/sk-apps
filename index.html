@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en" translate="no">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="google" content="notranslate">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#4f46e5">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="SK Toolkit">
+<title>SK Free Toolkit</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap">
+<style>
+  /* Layout: single centred column, big tap targets, one card per app. */
+  :root{
+    --ground:#f4f3f8; --surface:#ffffff; --sunken:#eceaf4;
+    --ink:#19171f; --ink-2:#4b4757; --ink-3:#7c7890; --line:#e3e0ec;
+    --accent:#4f46e5; --accent-ink:#ffffff; --accent-soft:#eceafe;
+    --good:#0f9d63; --good-soft:#e2f6ee;
+    --font:"Manrope",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --ground:#131219; --surface:#1c1a25; --sunken:#262433;
+      --ink:#f1eff7; --ink-2:#c3bfd1; --ink-3:#8f8ba3; --line:#32303f;
+      --accent:#8b84ff; --accent-ink:#14121f; --accent-soft:#2a2750;
+      --good:#3fcf93; --good-soft:#163a2c; color-scheme:dark;
+    }
+  }
+  :root[data-theme="dark"]{
+    --ground:#131219; --surface:#1c1a25; --sunken:#262433;
+    --ink:#f1eff7; --ink-2:#c3bfd1; --ink-3:#8f8ba3; --line:#32303f;
+    --accent:#8b84ff; --accent-ink:#14121f; --accent-soft:#2a2750;
+    --good:#3fcf93; --good-soft:#163a2c; color-scheme:dark;
+  }
+  *{box-sizing:border-box}
+  html{font-size:18px}
+  body{background:var(--ground);color:var(--ink);font-family:var(--font);font-size:1rem;line-height:1.5;margin:0}
+  .wrap{max-width:38rem;margin:0 auto;padding-inline:20px;padding-block:28px 40px;display:flex;flex-direction:column;gap:28px}
+  h1{font-size:2.5rem;line-height:1.08;font-weight:800;letter-spacing:-.02em;margin:0 0 6px;text-wrap:balance}
+  h2{font-size:1.15rem;font-weight:800;margin:0 0 12px}
+  p{margin:0}
+  .by{text-align:right;font-size:.85rem;font-weight:600;color:var(--ink-3);margin:0 0 16px}
+  .lead{font-size:1.1rem;color:var(--ink-2);text-wrap:balance}
+  .facts{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin:20px 0 0;padding:16px;background:var(--accent-soft);border-radius:14px}
+  .facts div{padding-right:12px;min-width:0}
+  .facts div+div{padding-left:12px;border-left:1px solid color-mix(in srgb,var(--accent) 30%,transparent)}
+  .facts dt{font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin:0 0 3px}
+  .facts dd{margin:0;font-weight:700;color:var(--ink);font-size:.95rem;line-height:1.3}
+  @media (max-width:420px){.facts{grid-template-columns:1fr;gap:10px}.facts div,.facts div+div{padding:0;border:0}.facts div{display:flex;gap:10px;align-items:baseline}.facts dt{min-width:5.5rem;margin:0}}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:20px;display:flex;flex-direction:column;gap:14px}
+  .app-name{font-size:1.4rem;font-weight:800}
+  .app-desc{color:var(--ink-2)}
+  .btn{display:flex;align-items:center;justify-content:center;min-height:3.3rem;border-radius:14px;font:inherit;font-weight:800;font-size:1.05rem;text-decoration:none;border:0;cursor:pointer;width:100%}
+  .btn.primary{background:var(--accent);color:var(--accent-ink)}
+  .btn.soft{background:var(--accent-soft);color:var(--accent)}
+  .btn:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+  .soon{border-style:dashed;background:transparent}
+  .soon .app-name{color:var(--ink-3)}
+  ol.steps{margin:0;padding-left:1.3rem;display:flex;flex-direction:column;gap:8px;color:var(--ink-2)}
+  ol.steps b{color:var(--ink)}
+  .note{background:var(--sunken);border-radius:14px;padding:14px 16px;color:var(--ink-2);font-size:.95rem}
+  .upi{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;background:var(--sunken);border-radius:14px;padding:14px 16px}
+  .upi code{font:inherit;font-weight:800;word-break:break-all;min-width:0}
+  .qr{width:9rem;height:9rem;max-width:100%;border:2px dashed var(--line);border-radius:14px;display:flex;align-items:center;justify-content:center;text-align:center;color:var(--ink-3);font-size:.85rem;padding:10px;align-self:center}
+  footer{color:var(--ink-3);font-size:.9rem;text-align:center;display:flex;flex-direction:column;gap:4px}
+  footer b{color:var(--ink-2)}
+  html,body{margin:0}
+</style>
+</head>
+<body>
+
+<main class="wrap">
+  <header>
+    <h1>Daily Apps for a Productive Life</h1>
+    <p class="by">&ndash; Created by SK Free Toolkit</p>
+    <p class="lead">Simple, free apps to make your day more productive and effective. No installation required.</p>
+    <dl class="facts">
+      <div><dt>Cost</dt><dd>Free</dd></div>
+      <div><dt>Sign-up</dt><dd>None needed</dd></div>
+      <div><dt>Internet</dt><dd>Not needed after first open</dd></div>
+    </dl>
+  </header>
+
+  <section aria-labelledby="apps-h">
+    <h2 id="apps-h">Apps</h2>
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <article class="card">
+        <div class="app-name">To-Do List</div>
+        <p class="app-desc">Add tasks, set daily routines, group them by category, and set a goal time and deadline. Tick tasks off when done.</p>
+        <a class="btn primary" href="todo/">Open To-Do List</a>
+      </article>
+      <article class="card soon">
+        <div class="app-name">More apps coming</div>
+        <p class="app-desc">New apps will be added here as they are ready.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="card" aria-labelledby="install-h">
+    <h2 id="install-h" style="margin:0">How to use these apps</h2>
+    <ol class="steps">
+      <li>Open this page in your phone's browser, such as Chrome or Firefox.</li>
+      <li>Tap the <b>menu</b> (three dots), then <b>Add to Home screen</b>. Some browsers word it slightly differently, such as Install.</li>
+      <li>Tap <b>Add</b>. The SK Free Toolkit icon now appears on your home screen.</li>
+      <li>Tap the SK Free Toolkit icon any time, then choose an app such as the To-Do List.</li>
+      <li>To come back to this page from an app, tap <b>SK Free Toolkit</b> at the top left.</li>
+    </ol>
+    <p class="note">On iPhone, open the page in Safari, tap Share, then Add to Home Screen.</p>
+    <p class="note">Your tasks are saved on your own phone. Nothing is sent to anyone else.</p>
+  </section>
+
+  <section class="card" aria-labelledby="support-h">
+    <h2 id="support-h" style="margin:0">Support this work</h2>
+    <p class="app-desc">These apps are free. If they help you stay organised and productive, you can support this work.</p>
+    <div class="qr">UPI QR code will be added here</div>
+    <div class="upi"><span>UPI ID</span><code>to be added</code></div>
+  </section>
+
+  <footer>
+    <p><b>Free to use. Made by Sunil Kumar P.</b></p>
+    <p>Completely free of charge. Provided as is.</p>
+  </footer>
+</main>
+
+<script>
+if("serviceWorker" in navigator){window.addEventListener("load",function(){navigator.serviceWorker.register("sw.js").catch(function(){});});}
+</script>
+</body>
+</html>
